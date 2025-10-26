@@ -1,27 +1,18 @@
 package racingcar;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Controller {
 
     public void run(){
         String names = InputView.inputCarNames();
-        List<Car> cars = setupCars(names);
-
         String tryCnt = InputView.inputTryCnt();
-        Validator.validateTryCnt(tryCnt);
-    }
+        int tryCount = Validator.validateTryCnt(tryCnt);
 
-    private List<Car> setupCars(String carNames){
-        String names[] = carNames.split(",");
-        Validator.validateNames(names);
+        Game game = new Game(names);
 
-        List<Car> carList = new ArrayList<>();
-        for (String n : names) {
-            carList.add(new Car(n));
+        System.out.println("\n실행 결과");
+        for (int i = 0; i < tryCount; i++) {
+            game.playSingleRound();
+            OutputView.printRoundResult(game.getCars());
         }
-
-        return carList;
     }
 }
