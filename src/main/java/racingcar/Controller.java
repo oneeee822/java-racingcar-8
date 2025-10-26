@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.List;
+
 public class Controller {
 
     public void run(){
@@ -14,5 +16,8 @@ public class Controller {
             game.playSingleRound();
             OutputView.printRoundResult(game.getCars());
         }
+
+        List<String> winners = game.findWinners();
+        OutputView.printWinners(winners);
     }
 }
